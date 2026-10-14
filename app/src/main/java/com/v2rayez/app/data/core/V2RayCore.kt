@@ -99,7 +99,7 @@ class V2RayCore @Inject constructor(
      * Start Xray with SOCKS/HTTP (and other non-TUN) inbounds only — no VpnService fd.
      *
      * Passes `tunFd = -1` to the AAR; the config must omit `tun-in` (see
-     * [com.v2rayez.app.data.mitm.MitmConfigBuilder] `includeTun=false`). Shares [exclusive]
+     * MitmConfigBuilder `includeTun=false`). Shares [exclusive]
      * with [startLoop] so VPN and proxy-only never overlap.
      *
      * @return false if init fails, another core is already running, or native start throws.
@@ -235,8 +235,8 @@ class V2RayCore @Inject constructor(
             if (parts.size != 3) return@forEach
             val tag = parts[0]
             val value = parts[2].toLongOrNull() ?: return@forEach
-            if (tag == ConfigBuilder.TAG_BLOCK || tag == ConfigBuilder.TAG_DNS) return@forEach
-            val direct = tag == ConfigBuilder.TAG_DIRECT
+            if (tag == VpsConfigBuilder.TAG_BLOCK || tag == VpsConfigBuilder.TAG_DNS) return@forEach
+            val direct = tag == VpsConfigBuilder.TAG_DIRECT
             when (parts[1]) {
                 "uplink" -> if (direct) directUp += value else proxyUp += value
                 "downlink" -> if (direct) directDown += value else proxyDown += value
