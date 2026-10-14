@@ -1,0 +1,4 @@
+# Добавьте эти строки в local.properties (файл в .gitignore; sdk.dir там уже есть).
+# Либо задайте одноимённые переменные окружения (CI).
+APP_HMAC_SECRET=тот-же-секрет-что-в-backend/.env
+API_BASE_URL=https://api.example.com/
